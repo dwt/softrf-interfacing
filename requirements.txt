@@ -1,0 +1,5 @@
+pyserial
+pyserial-asyncio
+pynmea2
+pynmeagps
+bleak
