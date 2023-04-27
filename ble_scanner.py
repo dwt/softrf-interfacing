@@ -3,6 +3,9 @@
 import asyncio
 from bleak import BleakScanner
 
+# 11.24 seconds is the max BLE advertising interval
+SCAN_TIME = 11.0 # seconds
+
 def detection_callback(device, advertisement_data):
     # print(device.address, "RSSI:", device.rssi, advertisement_data)
     print('.', flush=True, end='')
@@ -11,7 +14,7 @@ async def run():
     scanner = BleakScanner()
     scanner.register_detection_callback(detection_callback)
     await scanner.start()
-    await asyncio.sleep(5.0)
+    await asyncio.sleep(SCAN_TIME)
     await scanner.stop()
     devices = await scanner.get_discovered_devices()
     
